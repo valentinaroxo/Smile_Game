@@ -23,34 +23,18 @@
     }
 
 //funçao jogar novamente
-    function jogarNovamente() {
-      jogar = true;//variável jogar volta a ser verdadeira
-      //armazenamos todas as div na variável divis (getElementsByTagName)
-      let divis = document.getElementsByTagName("div");
-      //percorremos todas as divs armazenadas
-      for (i = 0; i < divis.length; i++) {
-        //verificamos se sao as divs com ids 0 ou 1 ou 2
-        //acrescentei mais possibilidades
-        if (divis[i].id == 0 || divis[i].id == 1 || divis[i].id == 2 || divis[i].id == 3 || divis[i].id == 4 || divis[i].id ==5) {
-          //alteramos a classe css das divs 0, 1 e 2 (className)
-          divis[i].className = "inicial";
-        }
-      }
-
-      //armazenamos a imagem do Smile na variável imagem (getElementById)
-      let imagem = document.getElementById("imagem");
-      //se a imagem nao for vazia (se ela existir)
-      if (imagem != "") {
-        //removemos a imagem do Smile
-        imagem.remove();
-      }
-      let DarkEmoji = document.getElementById("dark_emoji");
-      //se a imagem nao for vazia (se ela existir)
-      if (DarkEmoji!= "") {
-        //removemos a imagem do Smile
-        DarkEmoji.innerHTML = '';
+function jogarNovamente() {
+  jogar = true;
+  let divis = document.getElementsByTagName("div");
+  for (i = 0; i < divis.length; i++) {
+    if (divis[i].id == 0 || divis[i].id == 1 || divis[i].id == 2 || divis[i].id == 3 || divis[i].id == 4 || divis[i].id ==5) {
+      divis[i].className = "inicial";
+      while (divis[i].firstChild) {
+        divis[i].removeChild(divis[i].firstChild);
       }
     }
+  }
+}
 
     //funçao que atualiza o placar
     function atualizaPlacar(acertos, tentativas) {
