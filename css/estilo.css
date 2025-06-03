@@ -5,7 +5,10 @@
     display:inline;
   }
   body {
-    background-color: #FFF0F5; /* Rosa bem clarinho */
+    background-image: url('https://i.pinimg.com/736x/b0/a4/d7/b0a4d74cc0ffafa59e04b305813746be.jpg');
+    background-size: cover; /* cobre toda a tela */
+    background-repeat: no-repeat;
+    background-position: center;
   }
   .inicial {
     text-align: center;
@@ -58,4 +61,12 @@ h1{
 }
 p{
   text-align: center;
+   background-color: #ffe3ed;
+    width: 300px;
+}
+.subtitulo{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+
 }
