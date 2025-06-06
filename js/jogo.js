@@ -8,40 +8,39 @@ let jogar = true;
 const btnReiniciar = document.getElementById('reiniciar');
 const btnJogarNovamente = document.getElementById('joganovamente');
 
-// Função genérica para adicionar elementos nas divs
-function adicionarElemento(obj, tipo, id, conteudo, estilo = {}, classe = '') {
-  let elemento;
-  if (tipo === 'img') {
-    elemento = new Image(100);
-    elemento.src = conteudo;
-  } else {
-    elemento = document.createElement(tipo);
-    elemento.innerHTML = conteudo;
-  }
-
-  elemento.id = id;
-  elemento.className = classe;
-
-  for (let prop in estilo) {
-    elemento.style[prop] = estilo[prop];
-  }
-
+function adicionarElemento(obj, tipo, conteudo) {
+  const elemento = tipo === 'img' 
+    ? criarImagem(conteudo) 
+    : criarElementoTexto(tipo, conteudo);
+  
   obj.appendChild(elemento);
+}
+
+// Funções auxiliares (coloque logo abaixo da adicionarElemento)
+function criarImagem(src) {
+  const img = new Image(100);
+  img.src = src;
+  return img;
+}
+
+function criarElementoTexto(tag, texto) {
+  const elemento = document.createElement(tag);
+  elemento.textContent = texto;
+  elemento.style.fontSize = '80px';
+  elemento.style.display = 'block';
+  return elemento;
 }
 
 // Função para quando o jogador acerta
 function acertou(obj) {
   obj.className = "acertou";
-  adicionarElemento(obj, 'img', 'imagem', 'https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/svg/1f380.svg');
+  adicionarElemento(obj, 'img', 'https://images.emojiterra.com/google/noto-emoji/unicode-16.0/color/svg/1f380.svg');
 }
 
 // Função para quando o jogador erra
 function errou(obj) {
   obj.className = "errou";
-  adicionarElemento(obj, 'span', 'dark_emoji', '💀', {
-    fontSize: '80px',
-    display: 'block'
-  });
+  adicionarElemento(obj, 'span', '💀');
 }
 
 // Função que zera os valores das variáveis controladoras
@@ -61,7 +60,7 @@ function jogarNovamente() {
   jogar = true;
   let divis = document.getElementsByTagName("div");
   for (i = 0; i < divis.length; i++) {
-    if (divis[i].id == 0 || divis[i].id == 1 || divis[i].id == 2 || divis[i].id == 3 || divis[i].id == 4 || divis[i].id == 5) {
+    if (['0', '1', '2', '3', '4', '5'].includes(divis[i].id)) {
       divis[i].className = "inicial";
       while (divis[i].firstChild) {
         divis[i].removeChild(divis[i].firstChild);
